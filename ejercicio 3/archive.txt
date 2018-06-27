@@ -1,0 +1,5 @@
+debug codigoXCVBA cuerpo_ejemplo
+debug codigoXCVBA cuerpo_ejemplo
+error codigoXCVBA cuerpo_ejemplo
+error codigoXCVBA cuerpo_ejemplo
+error codigoXCVBA cuerpo_ejemplo

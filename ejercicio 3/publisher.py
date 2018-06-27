@@ -1,5 +1,4 @@
 import json
-import sys
 import pika
 
 
@@ -9,15 +8,13 @@ connection = pika.BlockingConnection(
 
 channel = connection.channel()
 
-channel.exchange_declare(exchange='logs',exchange_type='fanout')
-
-message = ' '.join(sys.argv[1:]) or 'info: hello world'
+channel.exchange_declare(exchange='logs',exchange_type='direct')
 
 channel.basic_publish(exchange='logs',
-                      routing_key='',
+                      routing_key='error',
                       body=json.dumps({"tipo": "error",
                      "codigo": "codigoXCVBA",
-                     "cuerpo": "cuerpo",}))
+                     "cuerpo": "cuerpo_ejemplo",}))
 
 print "publicado"
 

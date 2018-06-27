@@ -1,4 +1,3 @@
-import sys
 from django.conf import settings
 
 from django.core.mail import EmailMessage
@@ -18,7 +17,7 @@ settings.configure(
     EMAIL_HOST='smtp.gmail.com',
     EMAIL_PORT=587,
     EMAIL_HOST_USER='pazgenes1@gmail.com',
-    EMAIL_HOST_PASSWORD='000000',
+    EMAIL_HOST_PASSWORD='00000000',
 )
 
 

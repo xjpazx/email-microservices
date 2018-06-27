@@ -10,16 +10,15 @@ channel = connection.channel()
 
 channel.exchange_declare(
     exchange='logs',
-    exchange_type='fanout'
+    exchange_type='direct'
 )
 result=channel.queue_declare(exclusive=True)
 queue_name=result.method.queue
-channel.queue_bind(exchange='logs',queue=queue_name)
+channel.queue_bind(exchange='logs',routing_key='error',queue=queue_name)
 
 def importers(ch,method,properties,body):
     j=json.loads(body)
-    if(j['tipo']=='error'):
-        enviar_email("pazgenes@hotmail.com",j['codigo'],j['tipo'])
+    enviar_email("pazgenes@hotmail.com",j['codigo'],j['tipo'])
 
 channel.basic_consume(importers,queue=queue_name,no_ack=False)
 

@@ -12,13 +12,17 @@ channel=connection.channel()
 
 channel.exchange_declare(
     exchange='logs',
-    exchange_type='fanout'
+    exchange_type='direct'
 )
 
 results=channel.queue_declare(exclusive=True)
 queue_name=results.method.queue# traigo el nombre exclusivo
-channel.queue_bind(exchange='logs',queue=queue_name)#bind es la coneccion entre un exchange y una queue
+channel.queue_bind(exchange='logs',routing_key='error',queue=queue_name)
+channel.queue_bind(exchange='logs',routing_key='warning',queue=queue_name)
+channel.queue_bind(exchange='logs',routing_key='debug',queue=queue_name)
+
 print '[*] Startin worker With queue {}'.format(queue_name)
+
 
 def callback(ch,method,properties, body):
     j = json.loads(body)
