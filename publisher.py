@@ -8,7 +8,7 @@ channel.basic_publish(
     exchange="",
     routing_key="importers",
     body=json.dumps({"para": "pazgenes@hotmail.com",
-                     "asunto": "asunto1",
+                     "asunto": "asunto2",
                      "cuerpo": "prueba1",})
 )
 
